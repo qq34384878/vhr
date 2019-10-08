@@ -1,5 +1,7 @@
 package com.fangyu.vhr.model;
 
+import java.util.List;
+
 /**
  * Created by fangyu on 2019/10/8.
  */
@@ -14,15 +16,15 @@ public class Menu {
 
     private String name;
 
-    private String iconcls;
+    private String iconCls;
 
-    private Boolean keepalive;
+    private Meta meta;
 
-    private Boolean requireauth;
-
-    private Integer parentid;
+    private Integer parentId;
 
     private Boolean enabled;
+
+    private List<Menu> children;
 
     public Integer getId() {
         return id;
@@ -64,36 +66,20 @@ public class Menu {
         this.name = name;
     }
 
-    public String getIconcls() {
-        return iconcls;
+    public String getIconCls() {
+        return iconCls;
     }
 
-    public void setIconcls(String iconcls) {
-        this.iconcls = iconcls;
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
     }
 
-    public Boolean getKeepalive() {
-        return keepalive;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setKeepalive(Boolean keepalive) {
-        this.keepalive = keepalive;
-    }
-
-    public Boolean getRequireauth() {
-        return requireauth;
-    }
-
-    public void setRequireauth(Boolean requireauth) {
-        this.requireauth = requireauth;
-    }
-
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public Boolean getEnabled() {
@@ -102,5 +88,21 @@ public class Menu {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
+        this.children = children;
     }
 }

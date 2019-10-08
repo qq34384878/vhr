@@ -8,16 +8,62 @@
     <result column="path" jdbcType="VARCHAR" property="path" />
     <result column="component" jdbcType="VARCHAR" property="component" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="iconCls" jdbcType="VARCHAR" property="iconcls" />
-    <result column="keepAlive" jdbcType="BOOLEAN" property="keepalive" />
-    <result column="requireAuth" jdbcType="BOOLEAN" property="requireauth" />
-    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <result column="iconCls" jdbcType="VARCHAR" property="iconCls" />
+    <result column="parentId" jdbcType="INTEGER" property="parentId" />
     <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
+    <association property="meta" javaType="com.fangyu.vhr.model.Meta">
+      <result column="keepAlive" jdbcType="BOOLEAN" property="keepAlive" />
+      <result column="requireAuth" jdbcType="BOOLEAN" property="requireAuth" />
+    </association>
+  </resultMap>
+  <resultMap id="Menus2" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
+    <collection property="children" ofType="com.fangyu.vhr.model.Menu">
+      <id column="id2" jdbcType="INTEGER" property="id" />
+      <result column="url2" jdbcType="VARCHAR" property="url" />
+      <result column="path2" jdbcType="VARCHAR" property="path" />
+      <result column="component2" jdbcType="VARCHAR" property="component" />
+      <result column="name2" jdbcType="VARCHAR" property="name" />
+      <result column="iconCls2" jdbcType="VARCHAR" property="iconCls" />
+      <result column="parentId2" jdbcType="INTEGER" property="parentId" />
+      <result column="enabled2" jdbcType="BOOLEAN" property="enabled" />
+      <association property="meta" javaType="com.fangyu.vhr.model.Meta">
+        <result column="keepAlive2" jdbcType="BOOLEAN" property="keepAlive" />
+        <result column="requireAuth2" jdbcType="BOOLEAN" property="requireAuth" />
+      </association>
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, url, `path`, component, `name`, iconCls, keepAlive, requireAuth, parentId, enabled
   </sql>
+  <!--@自定义-->
+  <select id="getMenusByHrId" resultMap="Menus2">
+    SELECT DISTINCT
+      m1.*,
+      m2.`id` AS id2,
+      m2.`component` AS component2,
+      m2.`enabled` AS enabled2,
+      m2.`iconCls` AS iconCls2,
+      m2.`keepAlive` AS keepAlive2,
+      m2.`name` AS name2,
+      m2.`parentId` AS parentId2,
+      m2.`requireAuth` AS requireAuth2,
+      m2.`path` AS path2
+    FROM
+      menu m1,
+      menu m2,
+      hr_role hrr,
+      menu_role mr
+    WHERE
+      m1.`id` = m2.`parentId`
+      AND hrr.`hrid` = 10
+      AND hrr.`rid` = mr.`rid`
+      AND mr.`mid` = m2.`id`
+      AND m2.`enabled` = TRUE
+    ORDER BY
+      m1.`id`,
+      m2.`id`
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
