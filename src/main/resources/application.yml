@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    url: jdbc:mysql:///vhr?useUnicode=true&characterEncoding=UTF-8
+
+# myBatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+server:
+  port: 8081
