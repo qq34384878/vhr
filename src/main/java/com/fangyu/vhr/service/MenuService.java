@@ -23,4 +23,9 @@ public class MenuService {
     public List<Menu> getMenuByHrId() {
         return menuMapper.getMenusByHrId(((Hr) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
     }
+
+//    @Cacheable    // 缓存
+    public List<Menu> getAllMenusByWithRole() {
+        return menuMapper.getAllMenusByWithRole();
+    }
 }

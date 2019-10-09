@@ -16,7 +16,9 @@
       <result column="requireAuth" jdbcType="BOOLEAN" property="requireAuth" />
     </association>
   </resultMap>
+  <!--自定义返回的Menu2实体对象-->
   <resultMap id="Menus2" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
+    <!--组装从数据库过来的字段，-->
     <collection property="children" ofType="com.fangyu.vhr.model.Menu">
       <id column="id2" jdbcType="INTEGER" property="id" />
       <result column="url2" jdbcType="VARCHAR" property="url" />
@@ -32,6 +34,30 @@
       </association>
     </collection>
   </resultMap>
+  <!--自定义返回的MenuWithRole实体对象-->
+  <resultMap id="MenuWithRole" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
+    <collection property="roles" ofType="com.fangyu.vhr.model.Role">
+      <id column="rid" property="id"/>
+      <result column="rname" jdbcType="VARCHAR" property="name"/>
+      <result column="rnameZh" jdbcType="VARCHAR" property="nameZh"/>
+    </collection>
+  </resultMap>
+  <select id="getAllMenusByWithRole" resultMap="MenuWithRole">
+    SELECT
+      m.*,
+      r.`id` as rid,
+      r.`name` as rname,
+      r.`nameZh` as rnameZh
+    FROM
+      menu m,
+      menu_role mr,
+      role r
+    WHERE
+      m.`id` = mr.`mid`
+      AND mr.`rid` = r.`id`
+    ORDER BY
+      m.`id`
+  </select>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, url, `path`, component, `name`, iconCls, keepAlive, requireAuth, parentId, enabled
@@ -56,7 +82,7 @@
       menu_role mr
     WHERE
       m1.`id` = m2.`parentId`
-      AND hrr.`hrid` = 10
+      AND hrr.`hrid` = #{id}
       AND hrr.`rid` = mr.`rid`
       AND mr.`mid` = m2.`id`
       AND m2.`enabled` = TRUE
@@ -64,9 +90,10 @@
       m1.`id`,
       m2.`id`
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from menu
     where id = #{id,jdbcType=INTEGER}
@@ -78,13 +105,13 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Menu" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into menu (url, `path`, component, 
-      `name`, iconCls, keepAlive, 
+    insert into menu (url, `path`, component,
+      `name`, iconCls, keepAlive,
       requireAuth, parentId, enabled
       )
-    values (#{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{iconcls,jdbcType=VARCHAR}, #{keepalive,jdbcType=BOOLEAN}, 
-      #{requireauth,jdbcType=BOOLEAN}, #{parentid,jdbcType=INTEGER}, #{enabled,jdbcType=BOOLEAN}
+    values (#{url,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{iconCls,jdbcType=VARCHAR}, #{meta.keepAlive,jdbcType=BOOLEAN},
+      #{meta.requireAuth,jdbcType=BOOLEAN}, #{parentId,jdbcType=INTEGER}, #{enabled,jdbcType=BOOLEAN}
       )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Menu" useGeneratedKeys="true">
@@ -103,16 +130,16 @@
       <if test="name != null">
         `name`,
       </if>
-      <if test="iconcls != null">
+      <if test="iconCls != null">
         iconCls,
       </if>
-      <if test="keepalive != null">
+      <if test="meta.keepAlive != null">
         keepAlive,
       </if>
-      <if test="requireauth != null">
+      <if test="meta.requireAuth != null">
         requireAuth,
       </if>
-      <if test="parentid != null">
+      <if test="parentId != null">
         parentId,
       </if>
       <if test="enabled != null">
@@ -132,17 +159,17 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="iconcls != null">
-        #{iconcls,jdbcType=VARCHAR},
+      <if test="iconCls != null">
+        #{iconCls,jdbcType=VARCHAR},
       </if>
-      <if test="keepalive != null">
-        #{keepalive,jdbcType=BOOLEAN},
+      <if test="meta.keepAlive != null">
+        #{meta.keepAlive,jdbcType=BOOLEAN},
       </if>
-      <if test="requireauth != null">
-        #{requireauth,jdbcType=BOOLEAN},
+      <if test="meta.requireAuth != null">
+        #{meta.requireAuth,jdbcType=BOOLEAN},
       </if>
-      <if test="parentid != null">
-        #{parentid,jdbcType=INTEGER},
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=BOOLEAN},
@@ -165,17 +192,17 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="iconcls != null">
-        iconCls = #{iconcls,jdbcType=VARCHAR},
+      <if test="iconCls != null">
+        iconCls = #{iconCls,jdbcType=VARCHAR},
       </if>
-      <if test="keepalive != null">
-        keepAlive = #{keepalive,jdbcType=BOOLEAN},
+      <if test="meta.keepAlive != null">
+        keepAlive = #{meta.keepAlive,jdbcType=BOOLEAN},
       </if>
-      <if test="requireauth != null">
-        requireAuth = #{requireauth,jdbcType=BOOLEAN},
+      <if test="meta.requireAuth != null">
+        requireAuth = #{meta.requireAuth,jdbcType=BOOLEAN},
       </if>
-      <if test="parentid != null">
-        parentId = #{parentid,jdbcType=INTEGER},
+      <if test="parentId != null">
+        parentId = #{parentId,jdbcType=INTEGER},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=BOOLEAN},
@@ -190,10 +217,10 @@
       `path` = #{path,jdbcType=VARCHAR},
       component = #{component,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
-      iconCls = #{iconcls,jdbcType=VARCHAR},
-      keepAlive = #{keepalive,jdbcType=BOOLEAN},
-      requireAuth = #{requireauth,jdbcType=BOOLEAN},
-      parentId = #{parentid,jdbcType=INTEGER},
+      iconCls = #{iconCls,jdbcType=VARCHAR},
+      keepAlive = #{meta.keepAlive,jdbcType=BOOLEAN},
+      requireAuth = #{meta.requireAuth,jdbcType=BOOLEAN},
+      parentId = #{parentId,jdbcType=INTEGER},
       enabled = #{enabled,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=INTEGER}
   </update>

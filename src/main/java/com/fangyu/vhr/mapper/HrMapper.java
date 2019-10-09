@@ -1,6 +1,9 @@
 package com.fangyu.vhr.mapper;
 
 import com.fangyu.vhr.model.Hr;
+import com.fangyu.vhr.model.Role;
+
+import java.util.List;
 
 /**
  * Created by fangyu on 2019/10/8.
@@ -19,4 +22,6 @@ public interface HrMapper {
     int updateByPrimaryKey(Hr record);
 
     Hr loadUserByUsername(String username);
+
+    List<Role> getHrRolesById(Integer id);
 }

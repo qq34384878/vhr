@@ -11,7 +11,7 @@ public class Role {
     /**
     * 角色名称
     */
-    private String namezh;
+    private String nameZh;
 
     public Integer getId() {
         return id;
@@ -30,10 +30,10 @@ public class Role {
     }
 
     public String getNamezh() {
-        return namezh;
+        return nameZh;
     }
 
     public void setNamezh(String namezh) {
-        this.namezh = namezh;
+        this.nameZh = namezh;
     }
 }
