@@ -5,13 +5,16 @@
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
     <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, `name`, createDate, enabled
   </sql>
+  <select id="getAllPosition" resultMap="BaseResultMap">
+    select * from position
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
@@ -28,7 +31,7 @@
     <!--@mbg.generated-->
     insert into position (`name`, createDate, enabled
       )
-    values (#{name,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BOOLEAN}
+    values (#{name,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BOOLEAN}
       )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Position" useGeneratedKeys="true">
@@ -38,7 +41,7 @@
       <if test="name != null">
         `name`,
       </if>
-      <if test="createdate != null">
+      <if test="createDate != null">
         createDate,
       </if>
       <if test="enabled != null">
@@ -49,8 +52,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createdate != null">
-        #{createdate,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=BOOLEAN},
@@ -64,8 +67,8 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createdate != null">
-        createDate = #{createdate,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=BOOLEAN},
@@ -77,7 +80,7 @@
     <!--@mbg.generated-->
     update position
     set `name` = #{name,jdbcType=VARCHAR},
-      createDate = #{createdate,jdbcType=TIMESTAMP},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
       enabled = #{enabled,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=INTEGER}
   </update>
