@@ -1,4 +1,4 @@
-package com.fangyu.vhr.controller;
+package com.fangyu.vhr.controller.config;
 
 import com.fangyu.vhr.model.Menu;
 import com.fangyu.vhr.service.MenuService;
