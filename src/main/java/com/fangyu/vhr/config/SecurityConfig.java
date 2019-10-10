@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -104,7 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             respBean.setMsg("账户过期，请联系管理员!");
                         } else if (e instanceof DisabledException) {
                             respBean.setMsg("账户被禁用，请联系管理员!");
-                        } else if (e instanceof BadCredentialsException){
+                        } else if (e instanceof BadCredentialsException) {
                             respBean.setMsg("用户名或者密码输入错误, 请重新输入!");
                         }
                         out.write(new ObjectMapper().writeValueAsString(respBean));
@@ -127,6 +128,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .permitAll()
                 .and()
-                .csrf().disable();
+                .csrf().disable().exceptionHandling()
+                // 权限不足
+                .authenticationEntryPoint(new AuthenticationEntryPoint() {
+                    @Override
+                    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
+                        response.setContentType("application/json;charset=utf-8");
+                        PrintWriter out = response.getWriter();
+                        RespBean respBean = RespBean.error("访问失败!");
+                        if (e instanceof InsufficientAuthenticationException) {
+                            respBean.setMsg("请求失败，请联系管理员!");
+                        }
+                        out.write(new ObjectMapper().writeValueAsString(respBean));
+                        out.flush();
+                        out.close();
+                    }
+                });
     }
 }
