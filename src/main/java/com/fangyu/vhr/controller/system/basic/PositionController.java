@@ -49,4 +49,15 @@ public class PositionController {
         }
         return RespBean.error("删除失败!");
     }
+
+    @DeleteMapping("/")
+    public RespBean deletePositionByIds(Integer[] ids){
+        for (Integer i: ids){
+            System.out.println(i);
+        }
+        if (positionService.deletePositionByIds(ids) == ids.length) {
+            return RespBean.ok("删除成功!");
+        }
+        return RespBean.error("删除失败!");
+    }
 }

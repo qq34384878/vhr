@@ -1,6 +1,7 @@
 package com.fangyu.vhr.mapper;
 
 import com.fangyu.vhr.model.Position;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface PositionMapper {
     int updateByPrimaryKey(Position record);
 
     List<Position> getAllPosition();
+
+    Integer deletePositionByIds(@Param("ids") Integer[] ids);
 }
