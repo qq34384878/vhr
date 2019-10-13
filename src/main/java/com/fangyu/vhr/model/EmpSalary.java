@@ -3,12 +3,15 @@ package com.fangyu.vhr.model;
 import lombok.Data;
 
 /**
- * 民族表
+ * 员工薪资关联表
  * Created by fangyu on 2019/10/8.
  */
 @Data
-public class Nation {
+public class EmpSalary {
     private Integer id;
 
-    private String name;
+    private Integer eid;
+
+    private Integer sid;
+
 }

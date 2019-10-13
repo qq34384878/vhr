@@ -1,39 +1,22 @@
 package com.fangyu.vhr.model;
 
+import lombok.Data;
+
 /**
+ * 角色表
  * Created by fangyu on 2019/10/8.
  */
+@Data
 public class Role {
     private Integer id;
 
+    /**
+     * 角色名称
+     */
     private String name;
 
     /**
-    * 角色名称
-    */
+     * 角色中文名称
+     */
     private String nameZh;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNamezh() {
-        return nameZh;
-    }
-
-    public void setNamezh(String namezh) {
-        this.nameZh = namezh;
-    }
 }

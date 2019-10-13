@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.fangyu.vhr.model.HrRole">
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="hrid" jdbcType="INTEGER" property="hrid" />
+    <result column="hrId" jdbcType="INTEGER" property="hrId" />
     <result column="rid" jdbcType="INTEGER" property="rid" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, hrid, rid
+    id, hrId, rid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -25,23 +25,23 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.HrRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into hr_role (hrid, rid)
-    values (#{hrid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER})
+    insert into hr_role (hrId, rid)
+    values (#{hrId,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.HrRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into hr_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="hrid != null">
-        hrid,
+      <if test="hrId != null">
+        hrId,
       </if>
       <if test="rid != null">
         rid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="hrid != null">
-        #{hrid,jdbcType=INTEGER},
+      <if test="hrId != null">
+        #{hrId,jdbcType=INTEGER},
       </if>
       <if test="rid != null">
         #{rid,jdbcType=INTEGER},
@@ -52,8 +52,8 @@
     <!--@mbg.generated-->
     update hr_role
     <set>
-      <if test="hrid != null">
-        hrid = #{hrid,jdbcType=INTEGER},
+      <if test="hrId != null">
+        hrId = #{hrId,jdbcType=INTEGER},
       </if>
       <if test="rid != null">
         rid = #{rid,jdbcType=INTEGER},
@@ -64,7 +64,7 @@
   <update id="updateByPrimaryKey" parameterType="com.fangyu.vhr.model.HrRole">
     <!--@mbg.generated-->
     update hr_role
-    set hrid = #{hrid,jdbcType=INTEGER},
+    set hrId = #{hrId,jdbcType=INTEGER},
       rid = #{rid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

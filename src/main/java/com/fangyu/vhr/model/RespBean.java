@@ -1,10 +1,14 @@
 package com.fangyu.vhr.model;
 
+import lombok.Data;
+
 /**
+ * 返回Response对象实体类
  * @author fangyu
  * @version v1.0.0
  * @since 2019/10/8 5:00 下午
  */
+@Data
 public class RespBean {
 
     private Integer status;
@@ -36,27 +40,4 @@ public class RespBean {
         this.obj = obj;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Object getObj() {
-        return obj;
-    }
-
-    public void setObj(Object obj) {
-        this.obj = obj;
-    }
 }

@@ -1,36 +1,23 @@
 package com.fangyu.vhr.model;
 
+import lombok.Data;
+
 /**
+ * Hr角色表
  * Created by fangyu on 2019/10/8.
  */
+@Data
 public class HrRole {
     private Integer id;
 
-    private Integer hrid;
+    /**
+     * hr(操作员)Id
+     */
+    private Integer hrId;
 
+    /**
+     * 角色id
+     */
     private Integer rid;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getHrid() {
-        return hrid;
-    }
-
-    public void setHrid(Integer hrid) {
-        this.hrid = hrid;
-    }
-
-    public Integer getRid() {
-        return rid;
-    }
-
-    public void setRid(Integer rid) {
-        this.rid = rid;
-    }
 }

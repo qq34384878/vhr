@@ -1,10 +1,14 @@
 package com.fangyu.vhr.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
+ * 员工信息表
  * Created by fangyu on 2019/10/8.
  */
+@Data
 public class Employee {
     /**
     * 员工编号
@@ -29,7 +33,7 @@ public class Employee {
     /**
     * 身份证号
     */
-    private String idcard;
+    private String idCard;
 
     /**
     * 婚姻状况
@@ -39,17 +43,17 @@ public class Employee {
     /**
     * 民族
     */
-    private Integer nationid;
+    private Integer nationId;
 
     /**
     * 籍贯
     */
-    private String nativeplace;
+    private String nativePlace;
 
     /**
     * 政治面貌
     */
-    private Integer politicid;
+    private Integer politicId;
 
     /**
     * 邮箱
@@ -69,27 +73,27 @@ public class Employee {
     /**
     * 所属部门
     */
-    private Integer departmentid;
+    private Integer departmentId;
 
     /**
     * 职称ID
     */
-    private Integer joblevelid;
+    private Integer jobLevelId;
 
     /**
     * 职位ID
     */
-    private Integer posid;
+    private Integer posId;
 
     /**
     * 聘用形式
     */
-    private String engageform;
+    private String engageForm;
 
     /**
     * 最高学历
     */
-    private Object tiptopdegree;
+    private Object tiptopDegree;
 
     /**
     * 所属专业
@@ -104,269 +108,45 @@ public class Employee {
     /**
     * 入职日期
     */
-    private Date begindate;
+    private Date beginDate;
 
     /**
     * 在职状态
     */
-    private Object workstate;
+    private Object workState;
 
     /**
     * 工号
     */
-    private String workid;
+    private String workId;
 
     /**
     * 合同期限
     */
-    private Double contractterm;
+    private Double contractTerm;
 
     /**
     * 转正日期
     */
-    private Date conversiontime;
+    private Date conversionTime;
 
     /**
     * 离职日期
     */
-    private Date notworkdate;
+    private Date notworkDate;
 
     /**
     * 合同起始日期
     */
-    private Date begincontract;
+    private Date beginContract;
 
     /**
     * 合同终止日期
     */
-    private Date endcontract;
+    private Date endContract;
 
     /**
     * 工龄
     */
-    private Integer workage;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getIdcard() {
-        return idcard;
-    }
-
-    public void setIdcard(String idcard) {
-        this.idcard = idcard;
-    }
-
-    public Object getWedlock() {
-        return wedlock;
-    }
-
-    public void setWedlock(Object wedlock) {
-        this.wedlock = wedlock;
-    }
-
-    public Integer getNationid() {
-        return nationid;
-    }
-
-    public void setNationid(Integer nationid) {
-        this.nationid = nationid;
-    }
-
-    public String getNativeplace() {
-        return nativeplace;
-    }
-
-    public void setNativeplace(String nativeplace) {
-        this.nativeplace = nativeplace;
-    }
-
-    public Integer getPoliticid() {
-        return politicid;
-    }
-
-    public void setPoliticid(Integer politicid) {
-        this.politicid = politicid;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getDepartmentid() {
-        return departmentid;
-    }
-
-    public void setDepartmentid(Integer departmentid) {
-        this.departmentid = departmentid;
-    }
-
-    public Integer getJoblevelid() {
-        return joblevelid;
-    }
-
-    public void setJoblevelid(Integer joblevelid) {
-        this.joblevelid = joblevelid;
-    }
-
-    public Integer getPosid() {
-        return posid;
-    }
-
-    public void setPosid(Integer posid) {
-        this.posid = posid;
-    }
-
-    public String getEngageform() {
-        return engageform;
-    }
-
-    public void setEngageform(String engageform) {
-        this.engageform = engageform;
-    }
-
-    public Object getTiptopdegree() {
-        return tiptopdegree;
-    }
-
-    public void setTiptopdegree(Object tiptopdegree) {
-        this.tiptopdegree = tiptopdegree;
-    }
-
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-    public Date getBegindate() {
-        return begindate;
-    }
-
-    public void setBegindate(Date begindate) {
-        this.begindate = begindate;
-    }
-
-    public Object getWorkstate() {
-        return workstate;
-    }
-
-    public void setWorkstate(Object workstate) {
-        this.workstate = workstate;
-    }
-
-    public String getWorkid() {
-        return workid;
-    }
-
-    public void setWorkid(String workid) {
-        this.workid = workid;
-    }
-
-    public Double getContractterm() {
-        return contractterm;
-    }
-
-    public void setContractterm(Double contractterm) {
-        this.contractterm = contractterm;
-    }
-
-    public Date getConversiontime() {
-        return conversiontime;
-    }
-
-    public void setConversiontime(Date conversiontime) {
-        this.conversiontime = conversiontime;
-    }
-
-    public Date getNotworkdate() {
-        return notworkdate;
-    }
-
-    public void setNotworkdate(Date notworkdate) {
-        this.notworkdate = notworkdate;
-    }
-
-    public Date getBegincontract() {
-        return begincontract;
-    }
-
-    public void setBegincontract(Date begincontract) {
-        this.begincontract = begincontract;
-    }
-
-    public Date getEndcontract() {
-        return endcontract;
-    }
-
-    public void setEndcontract(Date endcontract) {
-        this.endcontract = endcontract;
-    }
-
-    public Integer getWorkage() {
-        return workage;
-    }
-
-    public void setWorkage(Integer workage) {
-        this.workage = workage;
-    }
+    private Integer workAge;
 }

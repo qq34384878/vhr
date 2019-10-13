@@ -1,26 +1,14 @@
 package com.fangyu.vhr.model;
 
+import lombok.Data;
+
 /**
+ * 政治面貌表
  * Created by fangyu on 2019/10/8.
  */
+@Data
 public class Politicsstatus {
     private Integer id;
 
     private String name;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

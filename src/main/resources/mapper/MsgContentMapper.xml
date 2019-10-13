@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fangyu.vhr.mapper.MsgcontentMapper">
-  <resultMap id="BaseResultMap" type="com.fangyu.vhr.model.Msgcontent">
+<mapper namespace="com.fangyu.vhr.mapper.MsgContentMapper">
+  <resultMap id="BaseResultMap" type="com.fangyu.vhr.model.MsgContent">
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="message" jdbcType="VARCHAR" property="message" />
-    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -24,14 +24,14 @@
     delete from msgcontent
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Msgcontent" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.MsgContent" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into msgcontent (title, message, createDate
       )
-    values (#{title,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}
+    values (#{title,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Msgcontent" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.MsgContent" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into msgcontent
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -41,7 +41,7 @@
       <if test="message != null">
         message,
       </if>
-      <if test="createdate != null">
+      <if test="createDate != null">
         createDate,
       </if>
     </trim>
@@ -52,12 +52,12 @@
       <if test="message != null">
         #{message,jdbcType=VARCHAR},
       </if>
-      <if test="createdate != null">
-        #{createdate,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fangyu.vhr.model.Msgcontent">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fangyu.vhr.model.MsgContent">
     <!--@mbg.generated-->
     update msgcontent
     <set>
@@ -67,18 +67,18 @@
       <if test="message != null">
         message = #{message,jdbcType=VARCHAR},
       </if>
-      <if test="createdate != null">
-        createDate = #{createdate,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fangyu.vhr.model.Msgcontent">
+  <update id="updateByPrimaryKey" parameterType="com.fangyu.vhr.model.MsgContent">
     <!--@mbg.generated-->
     update msgcontent
     set title = #{title,jdbcType=VARCHAR},
       message = #{message,jdbcType=VARCHAR},
-      createDate = #{createdate,jdbcType=TIMESTAMP}
+      createDate = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,8 +1,12 @@
 package com.fangyu.vhr.model;
 
+import lombok.Data;
+
 /**
+ * 部门表
  * Created by fangyu on 2019/10/8.
  */
+@Data
 public class Department {
     private Integer id;
 
@@ -11,59 +15,24 @@ public class Department {
     */
     private String name;
 
-    private Integer parentid;
+    /**
+     * 父部门id
+     */
+    private Integer parentId;
 
-    private String deppath;
+    /**
+     * 部门path
+     */
+    private String depPath;
 
+    /**
+     * 是否可用
+     */
     private Boolean enabled;
 
-    private Boolean isparent;
+    /**
+     * 是否为父部门
+     */
+    private Boolean isParent;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
-
-    public String getDeppath() {
-        return deppath;
-    }
-
-    public void setDeppath(String deppath) {
-        this.deppath = deppath;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Boolean getIsparent() {
-        return isparent;
-    }
-
-    public void setIsparent(Boolean isparent) {
-        this.isparent = isparent;
-    }
 }

@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * Hr信息表
  * Created by fangyu on 2019/10/8.
  */
 public class Hr implements UserDetails {
@@ -37,6 +38,9 @@ public class Hr implements UserDetails {
     */
     private String address;
 
+    /**
+     * 账户是否可用，默认值:1=true
+     */
     private Boolean enabled;
 
     /**
@@ -49,8 +53,14 @@ public class Hr implements UserDetails {
     */
     private String password;
 
+    /**
+     * 用户头像
+     */
     private String userface;
 
+    /**
+     * 备注
+     */
     private String remark;
     private List<Role> roles;
 
