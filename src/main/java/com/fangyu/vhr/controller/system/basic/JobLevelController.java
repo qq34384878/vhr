@@ -25,13 +25,12 @@ public class JobLevelController {
 
     @GetMapping("/")
     public List<JobLevel> getAllJobLevels(){
-        List<JobLevel> jobLevels = jobLevelService.getAllJobLevels();
-        log.info("job ==> {}",jobLevels);
-        return jobLevels;
+        return jobLevelService.getAllJobLevels();
     }
 
     @PostMapping("/")
-    public RespBean addJobLevel(JobLevel jobLevel){
+    public RespBean addJobLevel(@RequestBody JobLevel jobLevel){
+        log.info("job ==> {}", jobLevel);
         if(jobLevelService.addJobLevel(jobLevel) == 1){
             return RespBean.ok("添加成功!");
         }
@@ -46,8 +45,8 @@ public class JobLevelController {
         return RespBean.error("更新失败!");
     }
 
-    @DeleteMapping("/")
-    public RespBean deleteJobLevelById(Integer id){
+    @DeleteMapping("/{id}")
+    public RespBean deleteJobLevelById(@PathVariable Integer id){
         if (jobLevelService.deleteJobLevelById(id) == 1){
             return RespBean.ok("删除成功!");
         }
