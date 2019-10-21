@@ -89,6 +89,8 @@
     </update>
     <delete id="deletePositionByIds">
         delete from position where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
     </delete>
 </mapper>

@@ -1,6 +1,7 @@
 package com.fangyu.vhr.mapper;
 
 import com.fangyu.vhr.model.JobLevel;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface JobLevelMapper {
     int updateByPrimaryKey(JobLevel record);
 
     List<JobLevel> getAllJobLevels();
+
+    Integer deleteJobLevelByIds(@Param("ids") Integer[] ids);
 }
