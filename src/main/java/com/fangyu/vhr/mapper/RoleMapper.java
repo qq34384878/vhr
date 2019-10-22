@@ -2,6 +2,8 @@ package com.fangyu.vhr.mapper;
 
 import com.fangyu.vhr.model.Role;
 
+import java.util.List;
+
 /**
  * Created by fangyu on 2019/10/8.
  */
@@ -17,4 +19,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    List<Role> getAllRoles();
 }
