@@ -1,6 +1,8 @@
 package com.fangyu.vhr.controller.system.basic;
 
+import com.fangyu.vhr.model.Menu;
 import com.fangyu.vhr.model.Role;
+import com.fangyu.vhr.service.MenuService;
 import com.fangyu.vhr.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,16 @@ public class PermissController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private MenuService menuService;
+
     @GetMapping("/")
     public List<Role> getAllRoles(){
         return roleService.getAllRoles();
+    }
+
+    @GetMapping("/menus")
+    public List<Menu> getAllMenus() {
+        return menuService.getAllMenus();
     }
 }

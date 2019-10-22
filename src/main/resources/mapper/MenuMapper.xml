@@ -16,81 +16,10 @@
       <result column="requireAuth" jdbcType="BOOLEAN" property="requireAuth" />
     </association>
   </resultMap>
-  <!--自定义返回的Menu2实体对象-->
-  <resultMap id="Menus2" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
-    <!--组装从数据库过来的字段，-->
-    <collection property="children" ofType="com.fangyu.vhr.model.Menu">
-      <id column="id2" jdbcType="INTEGER" property="id" />
-      <result column="url2" jdbcType="VARCHAR" property="url" />
-      <result column="path2" jdbcType="VARCHAR" property="path" />
-      <result column="component2" jdbcType="VARCHAR" property="component" />
-      <result column="name2" jdbcType="VARCHAR" property="name" />
-      <result column="iconCls2" jdbcType="VARCHAR" property="iconCls" />
-      <result column="parentId2" jdbcType="INTEGER" property="parentId" />
-      <result column="enabled2" jdbcType="BOOLEAN" property="enabled" />
-      <association property="meta" javaType="com.fangyu.vhr.model.Meta">
-        <result column="keepAlive2" jdbcType="BOOLEAN" property="keepAlive" />
-        <result column="requireAuth2" jdbcType="BOOLEAN" property="requireAuth" />
-      </association>
-    </collection>
-  </resultMap>
-  <!--自定义返回的MenuWithRole实体对象-->
-  <resultMap id="MenuWithRole" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
-    <collection property="roles" ofType="com.fangyu.vhr.model.Role">
-      <id column="rid" property="id"/>
-      <result column="rname" jdbcType="VARCHAR" property="name"/>
-      <result column="rnameZh" jdbcType="VARCHAR" property="nameZh"/>
-    </collection>
-  </resultMap>
-  <select id="getAllMenusByWithRole" resultMap="MenuWithRole">
-    SELECT
-      m.*,
-      r.`id` as rid,
-      r.`name` as rname,
-      r.`nameZh` as rnameZh
-    FROM
-      menu m,
-      menu_role mr,
-      role r
-    WHERE
-      m.`id` = mr.`mid`
-      AND mr.`rid` = r.`id`
-    ORDER BY
-      m.`id`
-  </select>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, url, `path`, component, `name`, iconCls, keepAlive, requireAuth, parentId, enabled
   </sql>
-  <!--@自定义-->
-  <select id="getMenusByHrId" resultMap="Menus2">
-    SELECT DISTINCT
-      m1.*,
-      m2.`id` AS id2,
-      m2.`component` AS component2,
-      m2.`enabled` AS enabled2,
-      m2.`iconCls` AS iconCls2,
-      m2.`keepAlive` AS keepAlive2,
-      m2.`name` AS name2,
-      m2.`parentId` AS parentId2,
-      m2.`requireAuth` AS requireAuth2,
-      m2.`path` AS path2
-    FROM
-      menu m1,
-      menu m2,
-      hr_role hrr,
-      menu_role mr
-    WHERE
-      m1.`id` = m2.`parentId`
-      AND hrr.`hrid` = #{id}
-      AND hrr.`rid` = mr.`rid`
-      AND mr.`mid` = m2.`id`
-      AND m2.`enabled` = TRUE
-    ORDER BY
-      m1.`id`,
-      m2.`id`
-  </select>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
@@ -224,4 +153,111 @@
       enabled = #{enabled,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--@自定义 返回的MenuWithRole实体对象-->
+  <resultMap id="MenuWithRole" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
+    <collection property="roles" ofType="com.fangyu.vhr.model.Role">
+      <id column="rid" property="id"/>
+      <result column="rname" jdbcType="VARCHAR" property="name"/>
+      <result column="rnameZh" jdbcType="VARCHAR" property="nameZh"/>
+    </collection>
+  </resultMap>
+  <!--@自定义 通过角色查询所有菜单-->
+  <select id="getAllMenusByWithRole" resultMap="MenuWithRole">
+    SELECT
+      m.*,
+      r.`id` as rid,
+      r.`name` as rname,
+      r.`nameZh` as rnameZh
+    FROM
+      menu m,
+      menu_role mr,
+      role r
+    WHERE
+      m.`id` = mr.`mid`
+      AND mr.`rid` = r.`id`
+    ORDER BY
+      m.`id`
+  </select>
+  <!--@自定义 返回的MenuWithHrId实体对象-->
+  <resultMap id="MenuWithHrId" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
+    <!--组装从数据库过来的字段，-->
+    <collection property="children" ofType="com.fangyu.vhr.model.Menu">
+      <id column="id2" jdbcType="INTEGER" property="id" />
+      <result column="url2" jdbcType="VARCHAR" property="url" />
+      <result column="path2" jdbcType="VARCHAR" property="path" />
+      <result column="component2" jdbcType="VARCHAR" property="component" />
+      <result column="name2" jdbcType="VARCHAR" property="name" />
+      <result column="iconCls2" jdbcType="VARCHAR" property="iconCls" />
+      <result column="parentId2" jdbcType="INTEGER" property="parentId" />
+      <result column="enabled2" jdbcType="BOOLEAN" property="enabled" />
+      <association property="meta" javaType="com.fangyu.vhr.model.Meta">
+        <result column="keepAlive2" jdbcType="BOOLEAN" property="keepAlive" />
+        <result column="requireAuth2" jdbcType="BOOLEAN" property="requireAuth" />
+      </association>
+    </collection>
+  </resultMap>
+  <!--@自定义 通过Hr的id查询所有菜单，并返回指定的结果-->
+  <select id="getMenusByHrId" resultMap="MenuWithHrId">
+    SELECT DISTINCT
+      m1.*,
+      m2.`id` AS id2,
+      m2.`component` AS component2,
+      m2.`enabled` AS enabled2,
+      m2.`iconCls` AS iconCls2,
+      m2.`keepAlive` AS keepAlive2,
+      m2.`name` AS name2,
+      m2.`parentId` AS parentId2,
+      m2.`requireAuth` AS requireAuth2,
+      m2.`path` AS path2
+    FROM
+      menu m1,
+      menu m2,
+      hr_role hrr,
+      menu_role mr
+    WHERE
+      m1.`id` = m2.`parentId`
+      AND hrr.`hrid` = #{id}
+      AND hrr.`rid` = mr.`rid`
+      AND mr.`mid` = m2.`id`
+      AND m2.`enabled` = TRUE
+    ORDER BY
+      m1.`id`,
+      m2.`id`
+  </select>
+  <!--自定义 返回的MenuWithChildren实体对象-->
+  <resultMap id="MenuWithChildren" type="com.fangyu.vhr.model.Menu" extends="BaseResultMap">
+    <id column="id1" property="id"/>
+    <result column="name1" property="name"/>
+    <collection property="children" ofType="com.fangyu.vhr.model.Menu">
+      <id column="id2" property="id"/>
+      <result column="name2" property="name"/>
+      <collection property="children" ofType="com.fangyu.vhr.model.Menu">
+        <id column="id3" property="id"/>
+        <result column="name3" property="name"/>
+      </collection>
+    </collection>
+  </resultMap>
+  <!--@自定义 查询所有可用的树菜单 并按id排序 -->
+  <select id="getAllMenus" resultMap="MenuWithChildren">
+    SELECT
+      m1.id AS id1,
+      m1.`name` AS name1,
+      m2.id AS id2,
+      m2.`name` AS name2,
+      m3.id AS id3,
+      m3.`name` AS name3
+    FROM
+      menu m1,
+      menu m2,
+      menu m3
+    WHERE
+      m1.`id` = m2.parentId
+      AND m2.id = m3.parentId
+      AND m3.enabled = TRUE
+    ORDER BY
+      m1.id,
+      m2.id,
+      m3.id
+  </select>
 </mapper>

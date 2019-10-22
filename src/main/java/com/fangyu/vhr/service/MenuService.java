@@ -20,12 +20,19 @@ public class MenuService {
     @Autowired
     MenuMapper menuMapper;
 
+    // 通过HRId查询菜单
     public List<Menu> getMenuByHrId() {
         return menuMapper.getMenusByHrId(((Hr) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
     }
 
+    // 通过角色查询所有菜单
 //    @Cacheable    // 缓存
     public List<Menu> getAllMenusByWithRole() {
         return menuMapper.getAllMenusByWithRole();
+    }
+
+    // 获取所有菜单
+    public List<Menu> getAllMenus() {
+        return menuMapper.getAllMenus();
     }
 }
