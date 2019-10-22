@@ -26,4 +26,7 @@ public interface MenuMapper {
 
     // 获取所有菜单
     List<Menu> getAllMenus();
+
+    // 通过rid 查询Mid列表
+    List<Integer> getMidsByRid(Integer rid);
 }

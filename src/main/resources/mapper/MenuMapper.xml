@@ -260,4 +260,8 @@
       m2.id,
       m3.id
   </select>
+  <!--@自定义 通过rid 查询Mid列表 -->
+  <select id="getMidsByRid" resultType="java.lang.Integer">
+    SELECT mid FROM menu_role WHERE rid = #{rid}
+  </select>
 </mapper>

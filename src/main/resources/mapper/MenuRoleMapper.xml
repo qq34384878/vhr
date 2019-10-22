@@ -68,4 +68,16 @@
       rid = #{rid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--@自定义 通过角色rid删除 -->
+  <delete id="deleteByRid">
+    DELETE FROM menu_role WHERE rid = #{rid}
+  </delete>
+  <!--@自定义 插入角色rid关联的菜单mid -->
+  <insert id="insertRecord">
+    INSERT INTO menu_role(mid, rid) VALUES
+    <foreach collection="mids" separator="," item="mid">
+      (#{mid}, #{rid})
+    </foreach>
+  </insert>
 </mapper>
