@@ -2,6 +2,8 @@ package com.fangyu.vhr.mapper;
 
 import com.fangyu.vhr.model.Department;
 
+import java.util.List;
+
 /**
  * Created by fangyu on 2019/10/8.
  */
@@ -17,4 +19,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    List<Department> getAllDepartmentByParentId(Integer pid);
 }

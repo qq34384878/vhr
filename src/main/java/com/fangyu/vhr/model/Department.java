@@ -2,6 +2,8 @@ package com.fangyu.vhr.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 部门表
  * Created by fangyu on 2019/10/8.
@@ -34,5 +36,7 @@ public class Department {
      * 是否为父部门
      */
     private Boolean isParent;
+
+    private List<Department> children;
 
 }

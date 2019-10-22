@@ -16,7 +16,7 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from department
     where id = #{id,jdbcType=INTEGER}
@@ -28,9 +28,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Department" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into department (`name`, parentId, depPath, 
+    insert into department (`name`, parentId, depPath,
       enabled, isParent)
-    values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{depPath,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{depPath,jdbcType=VARCHAR},
       #{enabled,jdbcType=BOOLEAN}, #{isParent,jdbcType=BOOLEAN})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fangyu.vhr.model.Department" useGeneratedKeys="true">
@@ -103,4 +103,13 @@
       isParent = #{isParent,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <resultMap id="DepartmentWithChildren" type="com.fangyu.vhr.model.Department" extends="BaseResultMap">
+    <collection property="children" ofType="com.fangyu.vhr.model.Department"
+                select="com.fangyu.vhr.mapper.DepartmentMapper.getAllDepartmentByParentId"
+                column="id"/>
+  </resultMap>
+  <select id="getAllDepartmentByParentId" resultMap="DepartmentWithChildren">
+    SELECT * FROM department WHERE parentId=#{pid}
+  </select>
 </mapper>
