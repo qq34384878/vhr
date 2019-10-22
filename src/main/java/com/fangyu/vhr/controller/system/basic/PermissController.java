@@ -47,4 +47,12 @@ public class PermissController {
         }
         return RespBean.error("更新失败！");
     }
+
+    @PostMapping("/role")
+    public RespBean addRole(@RequestBody Role role){
+        if (roleService.addRole(role) == 1){
+            return RespBean.ok("添加成功！");
+        }
+        return RespBean.error("添加失败！");
+    }
 }
