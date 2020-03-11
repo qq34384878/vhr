@@ -5,7 +5,9 @@ import com.fangyu.vhr.model.Department;
 import java.util.List;
 
 /**
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 public interface DepartmentMapper {
     int deleteByPrimaryKey(Integer id);

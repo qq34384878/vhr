@@ -6,7 +6,9 @@ import java.util.Date;
 
 /**
  * 消息内容表
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 @Data
 public class MsgContent {

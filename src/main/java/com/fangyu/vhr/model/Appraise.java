@@ -7,7 +7,9 @@ import java.util.Date;
 
 /**
  * 员工评价表
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 @Data
 public class Appraise {

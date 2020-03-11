@@ -10,7 +10,9 @@ import java.util.List;
 
 /**
  * Hr信息表
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 public class Hr implements UserDetails {
     /**

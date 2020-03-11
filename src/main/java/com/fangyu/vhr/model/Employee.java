@@ -6,7 +6,9 @@ import java.util.Date;
 
 /**
  * 员工信息表
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 @Data
 public class Employee {

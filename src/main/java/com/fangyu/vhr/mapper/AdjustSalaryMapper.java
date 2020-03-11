@@ -3,7 +3,9 @@ package com.fangyu.vhr.mapper;
 import com.fangyu.vhr.model.AdjustSalary;
 
 /**
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 public interface AdjustSalaryMapper {
     int deleteByPrimaryKey(Integer id);

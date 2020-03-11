@@ -4,7 +4,9 @@ import lombok.Data;
 
 /**
  * 员工薪资关联表
- * Created by fangyu on 2019/10/8.
+ *
+ * @author fangyu
+ * @date 2019/10/8
  */
 @Data
 public class EmpSalary {
